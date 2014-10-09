@@ -412,6 +412,7 @@
 				130B607A19E6EC7B00D9B6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		130B607B19E6EC7B00D9B6A4 /* Build configuration list for PBXNativeTarget "patTestAppTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +421,7 @@
 				130B607D19E6EC7B00D9B6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
