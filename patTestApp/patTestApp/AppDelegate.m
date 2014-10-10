@@ -17,6 +17,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Display error is there is no URL
+    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+        UIAlertView *alertView;
+        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was not launched via the URL scheme." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+    
+    
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    // Display text
+    UIAlertView *alertView;
+    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
+    //strip out access token
+    NSArray* components = [[[url.absoluteString componentsSeparatedByString:@"="] objectAtIndex:1] componentsSeparatedByString:@"&"];
+    
+    //store access token
+    self.accessToken = [components objectAtIndex:0];
+    
     return YES;
 }
 
