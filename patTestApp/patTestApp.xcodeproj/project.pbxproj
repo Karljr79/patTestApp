@@ -14,12 +14,13 @@
 		130B606619E6EC7B00D9B6A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130B606519E6EC7B00D9B6A4 /* Images.xcassets */; };
 		130B606919E6EC7B00D9B6A4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130B606719E6EC7B00D9B6A4 /* LaunchScreen.xib */; };
 		130B607519E6EC7B00D9B6A4 /* patTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 130B607419E6EC7B00D9B6A4 /* patTestAppTests.m */; };
+		1354DED019E75EEB008D998F /* CheckedInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1354DECF19E75EEB008D998F /* CheckedInButton.png */; };
 		13BE8DEF19E705CE0077B9A3 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DEE19E705CE0077B9A3 /* key.png */; };
 		13BE8DF119E705E30077B9A3 /* paperwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF019E705E30077B9A3 /* paperwork.png */; };
 		13BE8DF319E728A40077B9A3 /* PP_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF219E728A40077B9A3 /* PP_Button.png */; };
 		13BE8DF519E72B130077B9A3 /* CheckInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF419E72B130077B9A3 /* CheckInButton.png */; };
 		13BE8DF719E72B950077B9A3 /* jqg_13539536932.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF619E72B950077B9A3 /* jqg_13539536932.jpg */; };
-		13BE8DFA19E730B10077B9A3 /* BillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8DF919E730B10077B9A3 /* BillViewController.m */; };
+		13BE8DFA19E730B10077B9A3 /* BindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8DF919E730B10077B9A3 /* BindingViewController.m */; };
 		13BE8DFC19E7391F0077B9A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13BE8DFB19E7391F0077B9A3 /* Foundation.framework */; };
 		13BE8E2319E7412F0077B9A3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8DFF19E7412F0077B9A3 /* AFHTTPRequestOperation.m */; };
 		13BE8E2419E7412F0077B9A3 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8E0119E7412F0077B9A3 /* AFHTTPRequestOperationManager.m */; };
@@ -64,13 +65,14 @@
 		130B606E19E6EC7B00D9B6A4 /* patTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = patTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		130B607319E6EC7B00D9B6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		130B607419E6EC7B00D9B6A4 /* patTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = patTestAppTests.m; sourceTree = "<group>"; };
+		1354DECF19E75EEB008D998F /* CheckedInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckedInButton.png; sourceTree = "<group>"; };
 		13BE8DEE19E705CE0077B9A3 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
 		13BE8DF019E705E30077B9A3 /* paperwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperwork.png; sourceTree = "<group>"; };
 		13BE8DF219E728A40077B9A3 /* PP_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PP_Button.png; sourceTree = "<group>"; };
 		13BE8DF419E72B130077B9A3 /* CheckInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckInButton.png; sourceTree = "<group>"; };
 		13BE8DF619E72B950077B9A3 /* jqg_13539536932.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jqg_13539536932.jpg; sourceTree = "<group>"; };
-		13BE8DF819E730B10077B9A3 /* BillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillViewController.h; sourceTree = "<group>"; };
-		13BE8DF919E730B10077B9A3 /* BillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillViewController.m; sourceTree = "<group>"; };
+		13BE8DF819E730B10077B9A3 /* BindingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingViewController.h; sourceTree = "<group>"; };
+		13BE8DF919E730B10077B9A3 /* BindingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingViewController.m; sourceTree = "<group>"; };
 		13BE8DFB19E7391F0077B9A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		13BE8DFE19E7412F0077B9A3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		13BE8DFF19E7412F0077B9A3 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -155,8 +157,8 @@
 				130B605D19E6EC7B00D9B6A4 /* AppDelegate.m */,
 				130B605F19E6EC7B00D9B6A4 /* LoginViewController.h */,
 				130B606019E6EC7B00D9B6A4 /* LoginViewController.m */,
-				13BE8DF819E730B10077B9A3 /* BillViewController.h */,
-				13BE8DF919E730B10077B9A3 /* BillViewController.m */,
+				13BE8DF819E730B10077B9A3 /* BindingViewController.h */,
+				13BE8DF919E730B10077B9A3 /* BindingViewController.m */,
 				130B606219E6EC7B00D9B6A4 /* Main.storyboard */,
 				130B606519E6EC7B00D9B6A4 /* Images.xcassets */,
 				130B606719E6EC7B00D9B6A4 /* LaunchScreen.xib */,
@@ -168,6 +170,7 @@
 		130B605819E6EC7B00D9B6A4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1354DECF19E75EEB008D998F /* CheckedInButton.png */,
 				13BE8DFD19E7412F0077B9A3 /* AFNetworking */,
 				13BE8E1119E7412F0077B9A3 /* UIKit+AFNetworking */,
 				13BE8DF619E72B950077B9A3 /* jqg_13539536932.jpg */,
@@ -335,6 +338,7 @@
 				13BE8DF719E72B950077B9A3 /* jqg_13539536932.jpg in Resources */,
 				13BE8DF119E705E30077B9A3 /* paperwork.png in Resources */,
 				130B606619E6EC7B00D9B6A4 /* Images.xcassets in Resources */,
+				1354DED019E75EEB008D998F /* CheckedInButton.png in Resources */,
 				13BE8DEF19E705CE0077B9A3 /* key.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +363,7 @@
 				13BE8E2E19E7412F0077B9A3 /* UIAlertView+AFNetworking.m in Sources */,
 				130B606119E6EC7B00D9B6A4 /* LoginViewController.m in Sources */,
 				13BE8E2719E7412F0077B9A3 /* AFSecurityPolicy.m in Sources */,
-				13BE8DFA19E730B10077B9A3 /* BillViewController.m in Sources */,
+				13BE8DFA19E730B10077B9A3 /* BindingViewController.m in Sources */,
 				13BE8E2419E7412F0077B9A3 /* AFHTTPRequestOperationManager.m in Sources */,
 				13BE8E2819E7412F0077B9A3 /* AFURLConnectionOperation.m in Sources */,
 				13BE8E3019E7412F0077B9A3 /* UIImageView+AFNetworking.m in Sources */,
