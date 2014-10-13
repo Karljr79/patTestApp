@@ -14,6 +14,7 @@
 		130B606619E6EC7B00D9B6A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130B606519E6EC7B00D9B6A4 /* Images.xcassets */; };
 		130B606919E6EC7B00D9B6A4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130B606719E6EC7B00D9B6A4 /* LaunchScreen.xib */; };
 		130B607519E6EC7B00D9B6A4 /* patTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 130B607419E6EC7B00D9B6A4 /* patTestAppTests.m */; };
+		135083CF19EC680C000524DA /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 135083CE19EC680C000524DA /* MenuItem.m */; };
 		1354DED019E75EEB008D998F /* CheckedInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1354DECF19E75EEB008D998F /* CheckedInButton.png */; };
 		13BE8DEF19E705CE0077B9A3 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DEE19E705CE0077B9A3 /* key.png */; };
 		13BE8DF119E705E30077B9A3 /* paperwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF019E705E30077B9A3 /* paperwork.png */; };
@@ -65,6 +66,8 @@
 		130B606E19E6EC7B00D9B6A4 /* patTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = patTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		130B607319E6EC7B00D9B6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		130B607419E6EC7B00D9B6A4 /* patTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = patTestAppTests.m; sourceTree = "<group>"; };
+		135083CD19EC680C000524DA /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
+		135083CE19EC680C000524DA /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
 		1354DECF19E75EEB008D998F /* CheckedInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckedInButton.png; sourceTree = "<group>"; };
 		13BE8DEE19E705CE0077B9A3 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
 		13BE8DF019E705E30077B9A3 /* paperwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperwork.png; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				130B606519E6EC7B00D9B6A4 /* Images.xcassets */,
 				130B606719E6EC7B00D9B6A4 /* LaunchScreen.xib */,
 				130B605819E6EC7B00D9B6A4 /* Supporting Files */,
+				135083CD19EC680C000524DA /* MenuItem.h */,
+				135083CE19EC680C000524DA /* MenuItem.m */,
 			);
 			path = patTestApp;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13BE8E3119E7412F0077B9A3 /* UIProgressView+AFNetworking.m in Sources */,
+				135083CF19EC680C000524DA /* MenuItem.m in Sources */,
 				13BE8E2F19E7412F0077B9A3 /* UIButton+AFNetworking.m in Sources */,
 				13BE8E3219E7412F0077B9A3 /* UIRefreshControl+AFNetworking.m in Sources */,
 				13BE8E2E19E7412F0077B9A3 /* UIAlertView+AFNetworking.m in Sources */,

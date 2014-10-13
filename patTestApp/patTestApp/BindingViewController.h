@@ -15,16 +15,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtBindingCode;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonCancel;
 @property (weak, nonatomic) IBOutlet UITextView *txtStatus;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinnerCode;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonPay;
 
 @property (weak, nonatomic) NSString *customerID;
 @property (weak, nonatomic) NSString *tabID;
 @property (weak, nonatomic) NSString *bindingCode;
 @property (weak, nonatomic) NSString *tabExtensionURL;
-@property (strong, nonatomic) NSDictionary *response;
+@property (weak, nonatomic) NSString *accessToken;
+@property (strong, nonatomic) NSMutableArray *menuItems;
+@property (strong, nonatomic) id response;
 @property (nonatomic) BOOL bSetCode;
+@property (nonatomic) NSTimer *myTimer;
 
 - (IBAction)btnCheckIn:(id)sender;
 - (IBAction)btnCancel:(id)sender;
+- (IBAction)btnPayNow:(id)sender;
+
+-(void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
 
 
 @end

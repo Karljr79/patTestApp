@@ -9,12 +9,13 @@
 #import "BindingViewController.h"
 #import "AppDelegate.h"
 #import "AFNetworking/AFNetworking.h"
+#import "MenuItem.h"
 
 @interface BindingViewController ()
 
 @end
 
-static NSString *kPayPalLocationID = @"ANUSSV6QYPG3G";
+static NSString *kPayPalLocationID = @"ANUSSV6QYPG3G"; //This is Josh's P@T Test location ID
 static NSString *kPayPalBaseURL = @"https://api.paypal.com/retail/customer/v1/locations/";
 static NSString *kMicrosBindBaseURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/appBind/";
 static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/status/";
@@ -31,9 +32,20 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSString *accessToken = [(AppDelegate *)[[UIApplication sharedApplication] delegate] accessToken];
+    //pull access token from delegate
+    self.accessToken = [(AppDelegate *)[[UIApplication sharedApplication] delegate] accessToken];
     
-    if(!accessToken){
+    //hide the spinner
+    self.spinnerCode.hidden = TRUE;
+    
+    //initialize Bool w/ false
+    self.bSetCode = FALSE;
+    
+    //init the array of items
+    self.menuItems = [[NSMutableArray alloc] init];
+    
+    //if we made it here without an access token, prompt user
+    if(!self.accessToken){
         [self showAlertWithTitle:@"Error" andMessage:@"You are not logged in, head to the login tab."];
     }
 }
@@ -57,33 +69,62 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
     [self deleteCheckIn];
 }
 
+- (IBAction)btnPayNow:(id)sender {
+}
+
 - (void) startTimer {
-    [NSTimer scheduledTimerWithTimeInterval:5
+    self.myTimer = [NSTimer scheduledTimerWithTimeInterval:5
                                      target:self
                                    selector:@selector(tick:)
                                    userInfo:nil
                                     repeats:YES];
 }
 
+//timer tick function.  This allows us to ping Micros
 - (void) tick:(NSTimer *) timer {
     
     if (self.bSetCode)
     {
-        NSArray *code = self.response[@"customers"];
+        NSArray *custObj = [self.response objectForKey:@"customers"];
+        NSDictionary *tableObj = [self.response objectForKey:@"table"];
         
-        for ( NSDictionary *obj in code)
+        NSLog(@"Table Object Array: %@", tableObj);
+        
+        if (custObj && !tableObj)
         {
-            NSLog(@"----");
-            NSLog(@"Code: %@", obj[@"customer_code"] );
-            NSLog(@"----");
-            
-            
-            if (obj[@"customer_code"])
+            for ( NSDictionary *obj in custObj)
             {
-                self.bindingCode = obj[@"customer_code"];
-                self.txtBindingCode.text = self.bindingCode;
-                self.bSetCode = FALSE;
-                break;
+                NSLog(@"----");
+                NSLog(@"Code: %@", obj[@"customer_code"] );
+                NSLog(@"----");
+                
+                if (obj[@"customer_code"])
+                {
+                    self.bindingCode = obj[@"customer_code"];
+                    self.txtBindingCode.text = self.bindingCode;
+                    self.bSetCode = FALSE;
+                    self.spinnerCode.hidden = TRUE;
+                    break;
+                }
+            }
+        }
+        else if (tableObj)
+        {
+            NSArray *customers = tableObj[@"customers"];
+            
+            NSLog(@"Here is the array: %@", customers);
+            
+            for (NSString *slotKey in customers)
+            {
+                if ([slotKey  isEqual: @"table_code"])
+                {
+                    self.bindingCode = [customers valueForKey:@"table_code"];
+                    self.txtBindingCode.text = self.bindingCode;
+                    self.bSetCode = FALSE;
+                    self.spinnerCode.hidden = TRUE;
+                    self.bSetCode = FALSE;
+                    break;
+                }
             }
             
         }
@@ -94,49 +135,61 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
         //create the full URL
         NSString *url1 = [kMicrosStatusBaseURL stringByAppendingString:kPayPalLocationID];
         NSString *url2 = [NSString stringWithFormat:@"%@%@%@%@%@%@",url1, @"/", self.customerID, @"/", self.tabID, @"/"];
-        NSURL *endUrl = [NSURL URLWithString:url2];
         
-        [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:endUrl] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            
-            if (error) {
-                [self fetchingGroupsFailedWithError:error];
-            } else {
-                NSLog(@"Checking for items.....");
-                
-                //NSLog(@"Response: %@", response);
-                
-                NSError *error = nil;
-                NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                self.response = jsonArray;
-                
-                if (error != nil) {
-                    NSLog(@"Error parsing JSON.");
-                }
-                else {
-                    NSLog(@"Array: %@", jsonArray);
-                    
-                    NSArray *items = self.response[@"table.items"];
-                    
-                    self.txtStatus.text = items[0];
-                }
-            }
-        }];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+        [manager GET:url2
+          parameters:nil
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 self.response = responseObject;
+                 NSError *error = nil;
+                 //convert object to data
+                 NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[[responseObject objectForKey:@"table"] objectForKey:@"items"]
+                                                                    options:NSJSONWritingPrettyPrinted error:&error];
+                 
+                 
+                 
+                 NSLog(@"----");
+                 NSLog(@"Checking for items");
+                 NSLog(@"----");
+                 
+                 NSDictionary *tableObj = [self.response objectForKey:@"table"];
+                 
+                 if (tableObj)
+                 {
+                     NSArray *items = tableObj[@"items"];
+                     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:items];
+                     
+                     //NSLog(@"Here is the array: %@", items);
+                     MenuItem *newItem = [[MenuItem alloc] init];
+                     
+                     //this is here for if we ever want to actually clean up that data
+                     for (id item in items)
+                     {
+                         newItem.itemName = [items valueForKey:@"name"];
+                         newItem.itemQty = [items valueForKey:@"quantity"];
+                         newItem.itemPrice = [items valueForKey:@"unitPrice"];
+                         
+                         [self.menuItems addObject:newItem];
+                         
+                         NSLog(@"Here is item:  %@", newItem.itemName);
+                     }
+                     
+                     self.txtStatus.text = [[NSString alloc] initWithData:jsonData
+                                                              encoding:NSUTF8StringEncoding];
+                     
+                 }
+
+                 
+                 
+             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 NSLog(@"Error: %@", error);
+             }];
+        
     }
   
     NSLog(@"Tick!");
 }
-
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 -(void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message
 {
@@ -152,16 +205,14 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
 
 - (void)createCheckIn
 {
+    //set up access token
+    NSMutableString *token = [[NSMutableString alloc] initWithString:@"Bearer "];
+    [token appendString:self.accessToken];
     
-    NSString *accessToken = [(AppDelegate *)[[UIApplication sharedApplication] delegate] accessToken];
-    
-    // 1
+    //set up the URL
     NSString *url1 = [kPayPalBaseURL stringByAppendingString:kPayPalLocationID];
     NSString *url2 = [url1 stringByAppendingString:@"/tabs"];
     NSURL *endUrl = [NSURL URLWithString:url2];
-    
-    NSMutableString *token = [[NSMutableString alloc] initWithString:@"Bearer "];
-    [token appendString:accessToken];
     
     //create request and headers
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endUrl];
@@ -178,13 +229,17 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
                                                     @"longitude" : @-74.684162 //Hamilton Township NJ
                                                     }];
     
+    //convert the dictionary to JSON
     NSError *jsonError = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&jsonError];
     
+    //did the json get created properly?
     if (! jsonData) {
-        NSLog(@"Got an error: %@", jsonError);
+        NSLog(@"-----");
+        NSLog(@"Got an error creating JSON body for PayPal Check In: %@", jsonError);
+        NSLog(@"-----");
     } else {
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"jsonArray - %@",jsonString);
@@ -196,7 +251,7 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"It WOrked!!!!!");
+        NSLog(@"It Worked!!!!!");
         
         NSLog(@"JSON: %@", responseObject);
         
@@ -228,19 +283,20 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
 
 -(void) deleteCheckIn
 {
-    NSString *accessToken = [(AppDelegate *)[[UIApplication sharedApplication] delegate] accessToken];
+    //set up the call to PayPal
+    //set up access token
+    NSMutableString *token = [[NSMutableString alloc] initWithString:@"Bearer "];
+    [token appendString:self.accessToken];
     
+    //set up the URL
     NSString *url1 = [kPayPalBaseURL stringByAppendingString:kPayPalLocationID];
     NSString *url2 = [url1 stringByAppendingString:@"/tab/"];
     NSString *url3 = [url2 stringByAppendingString:self.tabID];
     NSURL *endUrl = [NSURL URLWithString:url3];
     
-    NSMutableString *token = [[NSMutableString alloc] initWithString:@"Bearer "];
-    [token appendString:accessToken];
-    
+    //set up the request
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endUrl];
     [request setHTTPMethod:@"DELETE"];
-    
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:token forHTTPHeaderField:@"Authorization"];
@@ -252,7 +308,9 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"-----");
         NSLog(@"Deleted Tab Successfully");
+        NSLog(@"-----");
         
         NSLog(@"JSON: %@", responseObject);
         
@@ -264,9 +322,13 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
         self.txtTabId.text = self.tabID;
         self.buttonCheckIn.enabled = TRUE;
         self.buttonCancel.enabled = FALSE;
-        
         self.txtBindingCode.text = @"-";
         
+        [self.myTimer invalidate];
+        
+        self.spinnerCode.hidden = TRUE;
+        
+        //show alert
         UIAlertView *alertView;
         alertView = [[UIAlertView alloc] initWithTitle:@"PayPal" message:@"You were Checked Out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
@@ -288,18 +350,25 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
     //create the full URL
     NSString *url1 = [kMicrosBindBaseURL stringByAppendingString:kPayPalLocationID];
     NSString *url2 = [NSString stringWithFormat:@"%@%@%@%@%@%@",url1, @"/", self.customerID, @"/", self.tabID, @"/"];
-    NSURL *endUrl = [NSURL URLWithString:url2];
     
+    //set up HTTP request
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager GET:url2
       parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"JSON: %@", responseObject);
+         success:^(AFHTTPRequestOperation *operation, id responseObject)
+         {
+             //let's see what we get back as a response
+             //NSLog(@"JSON returned from check in: %@", responseObject);
+             //it worked, get the binding code from Micros
              [self getCodeFromMicros];
-         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"-----");
+             NSLog(@"Error checking in to Micros: %@", error);
+             NSLog(@"-----");
          }
      ];
     
@@ -313,72 +382,23 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
     NSURL *endUrl = [NSURL URLWithString:url2];
     
     NSLog(@"%@", endUrl);
-    
-    [self startTimer];
-    
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:endUrl] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        if (error) {
-            [self fetchingGroupsFailedWithError:error];
-        } else {
-            NSLog(@"YAY!!!!!!!!!");
-            
-            self.bSetCode= TRUE;
-            
-            NSLog(@"Response: %@", response);
-            
-            NSError *error = nil;
-            NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            self.response = jsonArray;
-            
-            if (error != nil) {
-                NSLog(@"Error parsing JSON.");
-            }
-            else {
-                NSLog(@"Array: %@", jsonArray);
-            }
-        }
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:url2
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+             self.bSetCode= TRUE;
+             self.response = responseObject;
+             
+             self.spinnerCode.hidden = FALSE;
+             
+            [self startTimer];
+             
+       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"Error: %@", error);
     }];
-    
-  
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endUrl];
-//    [request setHTTPMethod:@"GET"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
-//    
-//    // create network operation
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"Got a Code!!!!!");
-//        
-//        NSLog(@"JSON: %@", responseObject);
-//        
-//        self.bindingCode = (NSString *)[responseObject objectForKey:@"customer_code"];
-//        
-//        self.txtBindingCode.text = self.bindingCode;
-//        self.txtAcknowledge.enabled = TRUE;
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        UIAlertView *alertView;
-//        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Problem calling Micros to get code" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alertView show];
-//        
-//        NSLog(@"%@",[error localizedDescription]);
-//    }];
-//    
-//    [operation start];
 }
-
-#pragma mark - MeetupCommunicatorDelegate
-
-
-
-- (void)fetchingGroupsFailedWithError:(NSError *)error
-{
-    [self fetchingGroupsFailedWithError:error];
-}
-
 
 @end
