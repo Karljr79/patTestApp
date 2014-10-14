@@ -94,7 +94,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Pay" id="ncF-nz-b0u">
                             <connections>
-                                <action selector="btnPayNow:" destination="wlK-21-WMQ" id="Xl2-jM-5uh"/>
+                                <segue destination="4wF-Ln-gne" kind="modal" identifier="MakePayment" id="o5W-01-QKx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -111,7 +111,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUr-aa-ky3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="1112"/>
+            <point key="canvasLocation" x="1022" y="1112"/>
+        </scene>
+        <!--Pay with PayPal-->
+        <scene sceneID="1AH-bZ-jlg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jse-li-dhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Tqj-YU-P0K" customClass="PaymentViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4NB-yT-vgI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kLC-ac-maQ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLC-ac-maQ" id="bKZ-mM-9aa">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Tqj-YU-P0K" id="nst-xt-CjQ"/>
+                            <outlet property="delegate" destination="Tqj-YU-P0K" id="auB-EC-QIa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Pay with PayPal" id="deo-k0-Ipt">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xdc-P0-phi">
+                            <connections>
+                                <action selector="cancel:" destination="jse-li-dhz" id="pOg-Gs-mFR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="W3e-0r-rhD">
+                            <connections>
+                                <action selector="confirm:" destination="jse-li-dhz" id="5Ji-bE-UQx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1981" y="1112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DvT-Df-dlM">
+            <objects>
+                <navigationController id="4wF-Ln-gne" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UFT-4x-vRZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Tqj-YU-P0K" kind="relationship" relationship="rootViewController" id="8t7-ip-wkA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opJ-PR-RCB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1501" y="1112"/>
         </scene>
         <!--Login-->
         <scene sceneID="Fhq-5O-Fbb">

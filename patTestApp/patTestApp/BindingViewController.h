@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PaymentViewController.h"
 
-@interface BindingViewController : UIViewController
+@interface BindingViewController : UIViewController <PaymentViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *txtTabId;
 @property (weak, nonatomic) IBOutlet UILabel *txtCustId;
 @property (weak, nonatomic) IBOutlet UIButton *buttonCheckIn;
@@ -31,9 +33,7 @@
 
 - (IBAction)btnCheckIn:(id)sender;
 - (IBAction)btnCancel:(id)sender;
-- (IBAction)btnPayNow:(id)sender;
-
--(void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
+- (void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message;
 
 
 @end

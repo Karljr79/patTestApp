@@ -70,10 +70,6 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     [self deleteCheckIn];
 }
 
-- (IBAction)btnPayNow:(id)sender {
-    
-}
-
 - (void) startTimer {
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:5
                                      target:self
@@ -88,11 +84,8 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     if (self.bSetCode)
     {
         NSArray *custObj = [self.response objectForKey:@"customers"];
-        NSDictionary *tableObj = [self.response objectForKey:@"table"];
         
-        NSLog(@"Table Object Array: %@", tableObj);
-        
-        if (custObj && !tableObj)
+        if (custObj)
         {
             for ( NSDictionary *obj in custObj)
             {
@@ -110,28 +103,8 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
                 }
             }
         }
-        else if (tableObj)
-        {
-            NSArray *customers = tableObj[@"customers"];
-            
-            NSLog(@"Here is the array: %@", customers);
-            
-            for (NSString *slotKey in customers)
-            {
-                if ([slotKey  isEqual: @"table_code"])
-                {
-                    self.bindingCode = [customers valueForKey:@"table_code"];
-                    self.txtBindingCode.text = self.bindingCode;
-                    self.bSetCode = FALSE;
-                    self.spinnerCode.hidden = TRUE;
-                    self.bSetCode = FALSE;
-                    break;
-                }
-            }
-            
-        }
     }
-    
+
     if (!self.bSetCode)
     {
         //create the full URL
@@ -145,10 +118,6 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
                  self.response = responseObject;
                  NSError *error = nil;
-                 //convert object to data
-                 NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[[responseObject objectForKey:@"table"] objectForKey:@"items"]
-                                                                    options:NSJSONWritingPrettyPrinted error:&error];
-                 
                  
                  NSLog(@"----");
                  NSLog(@"Checking for items");
@@ -156,7 +125,7 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
                  
                  NSDictionary *tableObj = [self.response objectForKey:@"table"];
                  
-                 if (tableObj)
+                 if ([tableObj count] != 0)
                  {
                      NSArray *items = tableObj[@"items"];
                      
@@ -175,8 +144,14 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
                          NSLog(@"Here is item:  %@", newItem.itemName);
                      }
                      
+                     //convert object to data
+                     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[[responseObject objectForKey:@"table"] objectForKey:@"items"]
+                     options:NSJSONWritingPrettyPrinted error:&error];
+                     
                      self.txtStatus.text = [[NSString alloc] initWithData:jsonData
                                                               encoding:NSUTF8StringEncoding];
+                     
+                     self.buttonPay.enabled = TRUE;
                      
                  }
 
@@ -202,6 +177,8 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
      otherButtonTitles:nil];
     [alertView show];
 }
+
+
 
 - (void)createCheckIn
 {
@@ -399,6 +376,28 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"MakePayment"]) {
+        
+        UINavigationController *navigationController = segue.destinationViewController;
+        PaymentViewController *paymentViewController = [navigationController viewControllers][0];
+        paymentViewController.delegate = self;
+    }
+}
+
+#pragma mark - PaymentViewControllerDelegate
+
+- (void)paymentViewControllerDidCancel:(PaymentViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)paymentViewControllerDidSave:(PaymentViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
