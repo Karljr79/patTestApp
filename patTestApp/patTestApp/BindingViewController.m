@@ -19,6 +19,7 @@ static NSString *kPayPalLocationID = @"ANUSSV6QYPG3G"; //This is Josh's P@T Test
 static NSString *kPayPalBaseURL = @"https://api.paypal.com/retail/customer/v1/locations/";
 static NSString *kMicrosBindBaseURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/appBind/";
 static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/status/";
+static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/payment";
 
 @implementation BindingViewController
 
@@ -70,6 +71,7 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
 }
 
 - (IBAction)btnPayNow:(id)sender {
+    
 }
 
 - (void) startTimer {
@@ -148,7 +150,6 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
                                                                     options:NSJSONWritingPrettyPrinted error:&error];
                  
                  
-                 
                  NSLog(@"----");
                  NSLog(@"Checking for items");
                  NSLog(@"----");
@@ -158,7 +159,6 @@ static NSString *kMicrosStatusBaseURL = @"https://pat-cloud-dev.mpaymentgateway.
                  if (tableObj)
                  {
                      NSArray *items = tableObj[@"items"];
-                     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:items];
                      
                      //NSLog(@"Here is the array: %@", items);
                      MenuItem *newItem = [[MenuItem alloc] init];

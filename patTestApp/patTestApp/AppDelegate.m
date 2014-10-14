@@ -18,12 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //Display error is there is no URL
-    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
-        UIAlertView *alertView;
-        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was not launched via the URL scheme." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    }
+//    //Display error is there is no URL
+//    if (![launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+//        UIAlertView *alertView;
+//        alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app was not launched via the URL scheme." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alertView show];
+//    }
     
     
     

@@ -43,18 +43,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4G-3N-rRV">
-                                <rect key="frame" x="85" y="160" width="150" height="60"/>
-                                <state key="normal" image="CheckInButton.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled" image="CheckedInButton.png">
-                                    <color key="titleShadowColor" red="0.086274512112140656" green="0.058823533356189728" blue="0.023529414087533951" alpha="1" colorSpace="deviceRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnCheckIn:" destination="wlK-21-WMQ" eventType="touchUpInside" id="nXn-fM-Gbd"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Karl's Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYJ-LR-LbO">
                                 <rect key="frame" x="32" y="72" width="256" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -67,12 +55,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-WD-fFS">
-                                <rect key="frame" x="10" y="302" width="299" height="209"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xCd-I5-ZO1">
                                 <rect key="frame" x="150" y="307" width="20" height="20"/>
                                 <color key="color" red="0.01512422255" green="0.33121511050000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -83,6 +65,24 @@
                                 <color key="textColor" red="0.0078431377187371254" green="0.31764706969261169" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-WD-fFS">
+                                <rect key="frame" x="10" y="302" width="299" height="209"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4G-3N-rRV">
+                                <rect key="frame" x="85" y="160" width="150" height="60"/>
+                                <state key="normal" image="CheckInButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled" image="CheckedInButton.png">
+                                    <color key="titleShadowColor" red="0.086274512112140656" green="0.058823533356189728" blue="0.023529414087533951" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCheckIn:" destination="wlK-21-WMQ" eventType="touchUpInside" id="nXn-fM-Gbd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

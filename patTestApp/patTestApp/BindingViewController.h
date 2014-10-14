@@ -27,6 +27,7 @@
 @property (strong, nonatomic) id response;
 @property (nonatomic) BOOL bSetCode;
 @property (nonatomic) NSTimer *myTimer;
+@property (weak, nonatomic) IBOutlet UILabel *txtBIllTotal;
 
 - (IBAction)btnCheckIn:(id)sender;
 - (IBAction)btnCancel:(id)sender;
