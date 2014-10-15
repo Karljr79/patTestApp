@@ -85,7 +85,7 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     {
         NSArray *custObj = [self.response objectForKey:@"customers"];
         
-        if (custObj)
+        if ([self.response objectForKey:@"customers"])
         {
             for ( NSDictionary *obj in custObj)
             {
@@ -103,6 +103,12 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
                 }
             }
         }
+        if ([self.response objectForKey:@"table"])
+        {
+            self.bSetCode = FALSE;
+            self.spinnerCode.hidden = TRUE;
+        }
+        
     }
 
     if (!self.bSetCode)

@@ -55,10 +55,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xCd-I5-ZO1">
-                                <rect key="frame" x="150" y="307" width="20" height="20"/>
-                                <color key="color" red="0.01512422255" green="0.33121511050000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnB-jq-7sU">
                                 <rect key="frame" x="161" y="243" width="143" height="56"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="46"/>
@@ -66,8 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-WD-fFS">
-                                <rect key="frame" x="10" y="302" width="299" height="209"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="11" y="294" width="299" height="209"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
@@ -83,6 +78,10 @@
                                     <action selector="btnCheckIn:" destination="wlK-21-WMQ" eventType="touchUpInside" id="nXn-fM-Gbd"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xCd-I5-ZO1">
+                                <rect key="frame" x="142" y="366" width="37" height="37"/>
+                                <color key="color" red="0.01512422255" green="0.33121511050000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -116,20 +115,134 @@
         <!--Pay with PayPal-->
         <scene sceneID="1AH-bZ-jlg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jse-li-dhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Tqj-YU-P0K" customClass="PaymentViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4NB-yT-vgI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4NB-yT-vgI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kLC-ac-maQ">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLC-ac-maQ" id="bKZ-mM-9aa">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Select Tip Amount" id="tal-Ow-PYF">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kLC-ac-maQ">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLC-ac-maQ" id="bKZ-mM-9aa">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdJ-Er-tWJ">
+                                                    <rect key="frame" x="92" y="8" width="68" height="30"/>
+                                                    <color key="backgroundColor" red="0.83039565640000002" green="0.84594228319999998" blue="0.84220967920000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="10%">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btn10:" destination="Tqj-YU-P0K" eventType="touchUpInside" id="Jnp-Rr-thH"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1z-ya-NZp">
+                                                    <rect key="frame" x="168" y="8" width="68" height="30"/>
+                                                    <color key="backgroundColor" red="0.8303956563739604" green="0.84594228316326525" blue="0.84220967917012213" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="15%">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btn15:" destination="Tqj-YU-P0K" eventType="touchUpInside" id="oUd-Ns-bt9"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-Bd-QEG">
+                                                    <rect key="frame" x="244" y="8" width="68" height="30"/>
+                                                    <color key="backgroundColor" red="0.83039565640000002" green="0.84594228319999998" blue="0.84220967920000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="20%">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btn20:" destination="Tqj-YU-P0K" eventType="touchUpInside" id="j1d-gR-B1k"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7z-PQ-zCM">
+                                                    <rect key="frame" x="16" y="8" width="68" height="30"/>
+                                                    <color key="backgroundColor" red="0.83039565640000002" green="0.84594228319999998" blue="0.84220967920000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="None">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btn10:" destination="Tqj-YU-P0K" eventType="touchUpInside" id="Hwo-AM-lWy"/>
+                                                        <action selector="btnNone:" destination="Tqj-YU-P0K" eventType="touchUpInside" id="96k-mX-5JG"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Payment Amount" id="cIC-Sk-d3x">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qcN-NQ-x86">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qcN-NQ-x86" id="fzI-wa-Suq">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sub-Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f23-db-Xkf">
+                                                    <rect key="frame" x="86" y="11" width="74" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXm-7T-JXa">
+                                                    <rect key="frame" x="244" y="11" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yHq-Gp-isH">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHq-Gp-isH" id="OFn-vp-stl">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ig8-sP-Kev">
+                                                    <rect key="frame" x="85" y="12" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsK-6L-E2E">
+                                                    <rect key="frame" x="243" y="11" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uwf-KT-u5w">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uwf-KT-u5w" id="szf-Hq-Bcy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TOTAL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBo-Gp-8eY">
+                                                    <rect key="frame" x="85" y="12" width="79" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RY-jd-3Vq">
+                                                    <rect key="frame" x="243" y="11" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="Tqj-YU-P0K" id="nst-xt-CjQ"/>
                             <outlet property="delegate" destination="Tqj-YU-P0K" id="auB-EC-QIa"/>
@@ -138,18 +251,28 @@
                     <navigationItem key="navigationItem" title="Pay with PayPal" id="deo-k0-Ipt">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xdc-P0-phi">
                             <connections>
-                                <action selector="cancel:" destination="jse-li-dhz" id="pOg-Gs-mFR"/>
+                                <action selector="cancel:" destination="Tqj-YU-P0K" id="lEK-CG-FPH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="W3e-0r-rhD">
                             <connections>
-                                <action selector="confirm:" destination="jse-li-dhz" id="5Ji-bE-UQx"/>
+                                <action selector="confirm:" destination="Tqj-YU-P0K" id="uzh-4T-QaZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="button10" destination="OdJ-Er-tWJ" id="7wf-fn-I0S"/>
+                        <outlet property="button15" destination="l1z-ya-NZp" id="rhf-zA-apT"/>
+                        <outlet property="button20" destination="F4D-Bd-QEG" id="kRW-p9-i0x"/>
+                        <outlet property="buttonNone" destination="H7z-PQ-zCM" id="0TJ-C9-fPP"/>
+                        <outlet property="txtSubTotal" destination="CXm-7T-JXa" id="lcA-MV-iSN"/>
+                        <outlet property="txtTip" destination="IsK-6L-E2E" id="hFU-5a-3hK"/>
+                        <outlet property="txtTotal" destination="5RY-jd-3Vq" id="hwq-HU-6tV"/>
+                    </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jse-li-dhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981" y="1112"/>
+            <point key="canvasLocation" x="1981" y="1104"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DvT-Df-dlM">
