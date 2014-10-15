@@ -25,9 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtSubTotal;
 @property (weak, nonatomic) IBOutlet UILabel *txtTip;
 @property (weak, nonatomic) IBOutlet UILabel *txtTotal;
-@property (weak, nonatomic) NSNumber *fSubTotal;
-@property (weak, nonatomic) NSNumber *fTipAmount;
-@property (weak, nonatomic) NSNumber *fTotal;
+@property (strong, nonatomic) NSNumber *fSubTotal;
+@property (strong, nonatomic) NSNumber *fTipAmount;
+@property (strong, nonatomic) NSNumber *fTotal;
 
 - (IBAction)btn10:(id)sender;
 - (IBAction)btn15:(id)sender;

@@ -311,6 +311,8 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
         
         self.spinnerCode.hidden = TRUE;
         
+        self.txtStatus.text = @"";
+        
         //show alert
         UIAlertView *alertView;
         alertView = [[UIAlertView alloc] initWithTitle:@"PayPal" message:@"You were Checked Out" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
