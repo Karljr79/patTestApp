@@ -7,6 +7,9 @@
 //
 
 #import "PaymentViewController.h"
+#import "AFNetworking/AFNetworking.h"
+
+static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/cloud/api/payment";
 
 @implementation PaymentViewController
 
@@ -20,14 +23,17 @@
 
 - (IBAction)btn10:(id)sender {
     self.fTipAmount = [NSNumber numberWithDouble:0.10];
+    [self updateDisplay];
 }
 
 - (IBAction)btn15:(id)sender {
     self.fTipAmount = [NSNumber numberWithDouble:0.15];
+    [self updateDisplay];
 }
 
 - (IBAction)btn20:(id)sender {
     self.fTipAmount = [NSNumber numberWithDouble:0.20];
+    [self updateDisplay];
 }
 
 - (IBAction)cancel:(id)sender
@@ -36,11 +42,78 @@
 }
 - (IBAction)confirm:(id)sender
 {
-    [self.delegate paymentViewControllerDidSave:self];
+    if (self.tabID && self.custID)
+    {
+        [self payMicrosTab:^(BOOL flag) {
+            if (flag) {
+                
+            }
+            else{
+                [self showAlertWithTitle:@"PayPal" andMessage:@"Payment Failed, please try again"];
+            }
+        }];
+        
+    }
+    else
+    {
+        [self showAlertWithTitle:@"PayPal" andMessage:@"App is in a wierd state and you should never have made it this far!!!"];
+    }
+}
+
+- (void)updateDisplay
+{
+    self.txtSubTotal.text = [self.fSubTotal stringValue];
+    self.txtTip.text = [self.fTipAmount stringValue];
+    self.txtTotal.text = [self.fTotal stringValue];
 }
 
 - (IBAction)btnNone:(id)sender {
     self.fTipAmount = [NSNumber numberWithDouble:0.00];
+}
+
+-(void) showAlertWithTitle:(NSString *)title andMessage:(NSString *)message
+{
+    UIAlertView *alertView =
+    [[UIAlertView alloc]
+     initWithTitle:title
+     message: message
+     delegate:self
+     cancelButtonTitle:@"OK"
+     otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)payMicrosTab:(void (^)(BOOL flag))completionHandler
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *params = @{@"payment[sub_total]": self.fSubTotal.stringValue,
+                             @"payment[tax]": @"0.00",
+                             @"payment[total]": self.fTotal.stringValue,
+                             @"payment[tip]":self.fTipAmount.stringValue,
+                             @"payment[type]": @"TablePayment",
+                             @"pp_customer_id": self.custID,
+                             @"split_type": @"",
+                             @"pp_tab_id": self.tabID
+                             };
+    [manager POST:kMicrosPayURL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Payment Response: %@", responseObject);
+        
+        completionHandler(YES);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error making Payment: %@", error);
+        
+        completionHandler(NO);
+    }];
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Success"]) {
+        
+       
+    }
 }
 
 @end

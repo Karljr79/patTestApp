@@ -268,11 +268,38 @@
                         <outlet property="txtSubTotal" destination="CXm-7T-JXa" id="lcA-MV-iSN"/>
                         <outlet property="txtTip" destination="IsK-6L-E2E" id="hFU-5a-3hK"/>
                         <outlet property="txtTotal" destination="5RY-jd-3Vq" id="hwq-HU-6tV"/>
+                        <segue destination="pY0-hX-ba6" kind="modal" identifier="Success" id="Cxg-dp-E6Z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jse-li-dhz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1981" y="1104"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GqE-gF-S5y">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IL1-4j-vBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="pY0-hX-ba6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fan-ft-wyo"/>
+                        <viewControllerLayoutGuide type="bottom" id="8lz-6v-cFo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yzq-HF-xnc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Success!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4p-7d-VHf">
+                                <rect key="frame" x="125" y="248" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2395" y="1104"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DvT-Df-dlM">

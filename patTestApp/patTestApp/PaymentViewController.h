@@ -17,17 +17,11 @@
 
 @interface PaymentViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *button10;
-@property (weak, nonatomic) IBOutlet UIButton *button15;
-@property (weak, nonatomic) IBOutlet UIButton *button20;
-@property (weak, nonatomic) IBOutlet UIButton *buttonNone;
 @property (nonatomic, weak) id <PaymentViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *txtSubTotal;
-@property (weak, nonatomic) IBOutlet UILabel *txtTip;
-@property (weak, nonatomic) IBOutlet UILabel *txtTotal;
-@property (strong, nonatomic) NSNumber *fSubTotal;
-@property (strong, nonatomic) NSNumber *fTipAmount;
-@property (strong, nonatomic) NSNumber *fTotal;
+@property (weak, nonatomic) IBOutlet UIButton *button10, *button15, *button20, *buttonNone;
+@property (weak, nonatomic) IBOutlet UILabel *txtSubTotal, *txtTip, *txtTotal;
+@property (strong, nonatomic) NSNumber *fSubTotal, *fTipAmount, *fTotal;
+@property (strong, nonatomic) NSString *tabID, *custID;
 
 - (IBAction)btn10:(id)sender;
 - (IBAction)btn15:(id)sender;

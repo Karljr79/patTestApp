@@ -16,6 +16,7 @@
 		130B607519E6EC7B00D9B6A4 /* patTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 130B607419E6EC7B00D9B6A4 /* patTestAppTests.m */; };
 		135083CF19EC680C000524DA /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 135083CE19EC680C000524DA /* MenuItem.m */; };
 		1354DED019E75EEB008D998F /* CheckedInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1354DECF19E75EEB008D998F /* CheckedInButton.png */; };
+		1389D70619F083F50079878B /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1389D70519F083F50079878B /* SuccessViewController.m */; };
 		139643FB19ED7E4100322316 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139643FA19ED7E4100322316 /* PaymentViewController.m */; };
 		13BE8DEF19E705CE0077B9A3 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DEE19E705CE0077B9A3 /* key.png */; };
 		13BE8DF119E705E30077B9A3 /* paperwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 13BE8DF019E705E30077B9A3 /* paperwork.png */; };
@@ -70,6 +71,8 @@
 		135083CD19EC680C000524DA /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
 		135083CE19EC680C000524DA /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
 		1354DECF19E75EEB008D998F /* CheckedInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckedInButton.png; sourceTree = "<group>"; };
+		1389D70419F083F50079878B /* SuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
+		1389D70519F083F50079878B /* SuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
 		139643F919ED7E4100322316 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		139643FA19ED7E4100322316 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		13BE8DEE19E705CE0077B9A3 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				130B605819E6EC7B00D9B6A4 /* Supporting Files */,
 				139643F919ED7E4100322316 /* PaymentViewController.h */,
 				139643FA19ED7E4100322316 /* PaymentViewController.m */,
+				1389D70419F083F50079878B /* SuccessViewController.h */,
+				1389D70519F083F50079878B /* SuccessViewController.m */,
 			);
 			path = patTestApp;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				13BE8DFA19E730B10077B9A3 /* BindingViewController.m in Sources */,
 				13BE8E2419E7412F0077B9A3 /* AFHTTPRequestOperationManager.m in Sources */,
 				13BE8E2819E7412F0077B9A3 /* AFURLConnectionOperation.m in Sources */,
+				1389D70619F083F50079878B /* SuccessViewController.m in Sources */,
 				13BE8E3019E7412F0077B9A3 /* UIImageView+AFNetworking.m in Sources */,
 				13BE8E2319E7412F0077B9A3 /* AFHTTPRequestOperation.m in Sources */,
 				13BE8E2D19E7412F0077B9A3 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

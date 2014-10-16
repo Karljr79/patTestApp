@@ -392,6 +392,8 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
         
         UINavigationController *navigationController = segue.destinationViewController;
         PaymentViewController *paymentViewController = [navigationController viewControllers][0];
+        paymentViewController.custID = self.customerID;
+        paymentViewController.tabID = self.tabID;
         paymentViewController.delegate = self;
     }
 }
