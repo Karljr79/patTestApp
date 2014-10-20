@@ -10,4 +10,7 @@
 
 @implementation SuccessViewController
 
+- (IBAction)btnSuccess:(id)sender {
+    [self.presentingViewController.presentingViewController dismissModalViewControllerAnimated:YES];
+}
 @end

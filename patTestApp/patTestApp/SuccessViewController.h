@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SuccessViewController : UIViewController
+- (IBAction)btnSuccess:(id)sender;
 
 @end
