@@ -142,7 +142,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1z-ya-NZp">
                                                     <rect key="frame" x="168" y="8" width="68" height="30"/>
                                                     <color key="backgroundColor" red="0.8303956563739604" green="0.84594228316326525" blue="0.84220967917012213" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="15%">
+                                                    <state key="normal" title="20%">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -153,7 +153,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-Bd-QEG">
                                                     <rect key="frame" x="244" y="8" width="68" height="30"/>
                                                     <color key="backgroundColor" red="0.83039565640000002" green="0.84594228319999998" blue="0.84220967920000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="20%">
+                                                    <state key="normal" title="30%">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>

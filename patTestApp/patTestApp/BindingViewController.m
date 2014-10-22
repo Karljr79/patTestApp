@@ -31,6 +31,11 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
 
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"View Hidden......");
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     //pull access token from delegate

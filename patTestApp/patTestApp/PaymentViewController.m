@@ -19,6 +19,7 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     self.fSubTotal = [NSNumber numberWithDouble:1.00];
     self.fTipAmount = [NSNumber numberWithDouble:0.00];
     self.fTotal = @([self.fSubTotal doubleValue] + [self.fTipAmount doubleValue]);
+    NSLog(@"Here is the total: %@", [self.fTotal.stringValue stringByAppendingString:@".00"]);
 }
 
 - (IBAction)btn10:(id)sender {
@@ -27,12 +28,12 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
 }
 
 - (IBAction)btn15:(id)sender {
-    self.fTipAmount = [NSNumber numberWithDouble:0.15];
+    self.fTipAmount = [NSNumber numberWithDouble:0.20];
     [self updateDisplay];
 }
 
 - (IBAction)btn20:(id)sender {
-    self.fTipAmount = [NSNumber numberWithDouble:0.20];
+    self.fTipAmount = [NSNumber numberWithDouble:0.30];
     [self updateDisplay];
 }
 
@@ -46,7 +47,7 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     {
         [self payMicrosTab:^(BOOL flag) {
             if (flag) {
-                
+                [self performSegueWithIdentifier:@"Success" sender:self];
             }
             else{
                 [self showAlertWithTitle:@"PayPal" andMessage:@"Payment Failed, please try again"];
@@ -62,9 +63,10 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
 
 - (void)updateDisplay
 {
-    self.txtSubTotal.text = [self.fSubTotal stringValue];
-    self.txtTip.text = [self.fTipAmount stringValue];
-    self.txtTotal.text = [self.fTotal stringValue];
+    self.fTotal = @([self.fSubTotal doubleValue] + [self.fTipAmount doubleValue]);
+    self.txtSubTotal.text = [self.fSubTotal.stringValue stringByAppendingString:@".0"];
+    self.txtTip.text = [self.fTipAmount.stringValue stringByAppendingString:@".0"];
+    self.txtTotal.text = [self.fTotal.stringValue stringByAppendingString:@".0"];
 }
 
 - (IBAction)btnNone:(id)sender {
@@ -86,10 +88,11 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
 -(void)payMicrosTab:(void (^)(BOOL flag))completionHandler
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     NSDictionary *params = @{@"payment[sub_total]": self.fSubTotal.stringValue,
                              @"payment[tax]": @"0.00",
-                             @"payment[total]": self.fTotal.stringValue,
-                             @"payment[tip]":self.fTipAmount.stringValue,
+                             @"payment[total]": [self.fTotal.stringValue stringByAppendingString:@"0"],
+                             @"payment[tip]":[self.fTipAmount.stringValue stringByAppendingString:@".0"],
                              @"payment[type]": @"TablePayment",
                              @"pp_customer_id": self.custID,
                              @"split_type": @"",
