@@ -64,9 +64,12 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
 - (void)updateDisplay
 {
     self.fTotal = @([self.fSubTotal doubleValue] + [self.fTipAmount doubleValue]);
-    self.txtSubTotal.text = [self.fSubTotal.stringValue stringByAppendingString:@".0"];
-    self.txtTip.text = [self.fTipAmount.stringValue stringByAppendingString:@".0"];
-    self.txtTotal.text = [self.fTotal.stringValue stringByAppendingString:@".0"];
+    self.txtSubTotal.text = [self.fSubTotal.stringValue stringByAppendingString:@".00"];
+    self.txtTip.text = [self.fTipAmount.stringValue stringByAppendingString:@"0"];
+    self.txtTotal.text = [self.fTotal.stringValue stringByAppendingString:@"0"];
+    NSLog(@"Here is the total: %@", self.fTotal.stringValue);
+    NSLog(@"Here is the tip: %@", self.fTipAmount.stringValue);
+
 }
 
 - (IBAction)btnNone:(id)sender {
@@ -92,7 +95,7 @@ static NSString *kMicrosPayURL = @"https://pat-cloud-dev.mpaymentgateway.com/clo
     NSDictionary *params = @{@"payment[sub_total]": self.fSubTotal.stringValue,
                              @"payment[tax]": @"0.00",
                              @"payment[total]": [self.fTotal.stringValue stringByAppendingString:@"0"],
-                             @"payment[tip]":[self.fTipAmount.stringValue stringByAppendingString:@".0"],
+                             @"payment[tip]":[self.fTipAmount.stringValue stringByAppendingString:@"0"],
                              @"payment[type]": @"TablePayment",
                              @"pp_customer_id": self.custID,
                              @"split_type": @"",
